@@ -61,7 +61,7 @@ public class Employee {
 	@Cascade({CascadeType.ALL})
 	private Contact contact;
 	
-	@ManyToMany(fetch=FetchType.EAGER)
+	@ManyToMany(fetch=FetchType.LAZY)
 	@Cascade({CascadeType.SAVE_UPDATE})
 	@JoinTable(name = "employee_role", 
 	joinColumns = { @JoinColumn(name = "employeeid")}, 

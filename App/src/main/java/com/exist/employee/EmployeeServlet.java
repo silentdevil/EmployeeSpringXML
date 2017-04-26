@@ -9,10 +9,10 @@ import java.util.stream.Collectors;
 
 public class EmployeeServlet extends HttpServlet {
  
-  EmployeeService empServ = new EmployeeService();
-  ButtonFunctions buttonFunctions = new ButtonFunctions(empServ);
+  private EmployeeService empServ = new EmployeeService();
+  private ButtonFunctions buttonFunctions = new ButtonFunctions(empServ);
 
-   List<Employee> empList;
+  private List<Employee> empList;
   public void doGet(HttpServletRequest request,
                   HttpServletResponse response) throws ServletException, IOException {
    
@@ -56,6 +56,7 @@ public class EmployeeServlet extends HttpServlet {
     } else if(request.getParameter("delete") != null) {
       empServ.deleteElement(empServ.getElement(Employee.class,
         Long.valueOf(request.getParameter("delete"))));
+      request.setAttribute("empList", empList); request.setAttribute("addValue","");
       request.getRequestDispatcher("/index.jsp").forward(request, response);
 
     } else if(request.getParameter("deleterole") != null) {
